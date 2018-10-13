@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html lang="en" ng-app="myApp" class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html lang="en" ng-app="myApp" class="no-js"> <!--<![endif]-->
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="bower_components/angular-material/angular-material.min.css"></lib>
+    <link href="bower_components/c3/c3.css" rel="stylesheet">
+
+<!-- Load d3.js and c3.js -->
+
+    <script type="text/javascript" src="bower_components/jquery/dist/jquery.min.js"></script>
+    <script type="text/javascript" src="bower_components/angular/angular.min.js"></script>
+
+    <!-- Angular Material Dependencies -->
+    <script src="bower_components/angular-animate/angular-animate.js"></script>
+    <script src="bower_components/angular-aria/angular-aria.min.js"></script>
+    <script src="bower_components/angular-material/angular-material.min.js"></script>
+
+    <script src="bower_components/d3/d3.min.js" charset="utf-8"></script>
+    <script src="bower_components/c3/c3.min.js"></script>
+
+    
+    <script type="text/javascript" src="myApp.js"></script>
+    <script type="text/javascript" src="controller.js"></script>
+    <script type="text/javascript" src="metrics_json.js"></script>
+  </head>
+  <body ng-controller="mainCtrl">
+    <h1> Secret project </h1>
+
+      <md-select ng-model="selectedParameter">
+        <md-option ng-repeat="parameter in parameters">
+              {{parameter}}
+        </md-option>
+      </md-select>
+    <div id="chart"></div>
+  </body>
+  
+</html>
