@@ -10,12 +10,14 @@
     <title></title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- angular material -->
     <link rel="stylesheet" href="bower_components/angular-material/angular-material.min.css"></lib>
+    <!-- c3 -->
     <link href="bower_components/c3/c3.css" rel="stylesheet">
+    <!-- fichier css -->
+    <link href="index.css" rel="stylesheet">
 
-<!-- Load d3.js and c3.js -->
-
-    <script type="text/javascript" src="bower_components/jquery/dist/jquery.min.js"></script>
+    <!-- angular -->
     <script type="text/javascript" src="bower_components/angular/angular.min.js"></script>
 
     <!-- Angular Material Dependencies -->
@@ -23,23 +25,92 @@
     <script src="bower_components/angular-aria/angular-aria.min.js"></script>
     <script src="bower_components/angular-material/angular-material.min.js"></script>
 
+    <!-- Load d3.js and c3.js -->
     <script src="bower_components/d3/d3.min.js" charset="utf-8"></script>
     <script src="bower_components/c3/c3.min.js"></script>
 
-    
+    <!-- fchiers javascript -->
     <script type="text/javascript" src="myApp.js"></script>
     <script type="text/javascript" src="controller.js"></script>
     <script type="text/javascript" src="metrics_json.js"></script>
   </head>
   <body ng-controller="mainCtrl">
-    <h1> Secret project </h1>
+  <div layout="column" id="main">
 
-      <md-select ng-model="selectedParameter">
-        <md-option ng-repeat="parameter in parameters">
-              {{parameter}}
-        </md-option>
-      </md-select>
-    <div id="chart"></div>
+    <!-- selection des paramètres -->
+    <md-card>
+      <md-card-content>
+        <div layout="row">
+          <div>
+            <md-input-container>
+              <label>Datas:</label>
+              <md-select ng-change="generateGraph()" ng-model="selectedParameter">
+                <md-option ng-value="parameter" ng-repeat="parameter in parameters">
+                    {{parameter}}
+                </md-option>
+              </md-select>
+            </md-input-container>
+          </div>
+          <div flex-offset="5">
+            <md-input-container>
+              <label>After :</label>
+              <md-select ng-change="generateGraph()" ng-model="selectedAfter">
+                <md-option ng-value="time" ng-repeat="time in times">
+                    {{time}}
+                </md-option>
+              </md-select>
+            </md-input-container>
+          </div>
+          <div flex-offset="5">
+            <md-input-container>
+              <label>Before :</label>
+              <md-select ng-change="generateGraph()" ng-model="selectedBefore">
+                <md-option ng-value="time" ng-repeat="time in times">
+                    {{time}}
+                </md-option>
+              </md-select>
+            </md-input-container>
+          </div>
+        </div>
+      </md-card-content>
+    </md-card>
+
+    <!-- graph et affichage min, max et moy -->
+    <md-card>
+    <!-- titre -->
+      <md-card-title>
+        <md-card-title-text>
+          <span class="md-headline">{{selectedParameter}} against time</span>
+        </md-card-title-text>
+      </md-card-title>
+
+      <md-card-content>
+        <!-- graph -->
+        <div layout="row" id="chart"></div>
+        <!-- min, max et moy -->
+        <div id="resume_data" layout="row">
+          <div flex="10">
+            <div layout="column">
+              <label id="label">Max :</label> 
+              <div>{{parameterMax}}</div>
+            </div>
+          </div>
+          <div flex="10">
+            <div layout="column">
+              <label id="label">Min :</label> 
+              <div>{{parameterMin}}</div>
+            </div>
+          </div>
+          <div flex="10">
+            <div layout="column">
+              <label id="label">Moy :</label> 
+              <div>{{parameterMoy}}</div>
+            </div>
+          </div>
+        </div>
+      </md-card-content>
+    </md-card>
+  </div>
   </body>
   
 </html>

@@ -6,14 +6,14 @@ module.exports = function(config) {
     files: [
       'c3.css',
       'spec/*-helper.js',
-      'spec/*-spec.js'
+      'spec/*.js'
     ],
     preprocessors: {
       'spec/*.js': ['browserify']
     },
     browserify: {
       debug: true,
-      transform: [['babelify', { presets: ['@babel/preset-env'], plugins: ['istanbul'] }]]
+      transform: [['babelify', { presets: ['es2015'], plugins: ['istanbul'] }]]
     },
     reporters: ['spec', 'coverage-istanbul'],
     coverageIstanbulReporter: {
