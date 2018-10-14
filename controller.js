@@ -5,7 +5,6 @@ app.controller('mainCtrl', function ($scope,$http) {
 		$scope.parameterMin = 0;
 		$scope.parameterMax = 0;
 		$scope.times = $scope.getDatas("time");
-		$scope.files = $scope.getDatas("files");
 		$scope.selectedAfter = $scope.times[0];
 		$scope.selectedBefore = $scope.times[$scope.times.length - 1];
 		$scope.generateGraph();
@@ -34,19 +33,17 @@ app.controller('mainCtrl', function ($scope,$http) {
 		var fin = false;
 		var sommeData = 0;
 		var count = 0;
-		metrics.forEach(function(element){
-			if(element["time"] == $scope.selectedAfter){
-				debut = true;
-				$scope.parameterMin = element[$scope.selectedParameter];
-			}else if(element["time"] == $scope.selectedBefore){
-				fin = true;
-				$scope.parameterMax = element[$scope.selectedParameter];
-			}
-			if(debut == true && fin == false){
-				sommeData += element[$scope.selectedParameter];
-				count += 1;
-			}else if(fin == true){
-				$scope.parameterMoy = sommeData/count;
+		$scope.parameterMin = metrics[0][$scope.selectedParameter];
+		metrics.forEach(function(element,key){
+			if(element["time"] >= $scope.selectedAfter){
+				if($scope.parameterMin > element[$scope.selectedParameter]){$scope.parameterMin = element[$scope.selectedParameter];}
+				if($scope.parameterMax < element[$scope.selectedParameter]){$scope.parameterMax = element[$scope.selectedParameter];}
+				sommeData += element[$scope.selectedParameter];	
+				count += 1;			
+				if(element["time"] > $scope.selectedBefore || key == metrics.length-1){
+					$scope.parameterMoy = sommeData/count;
+					return;
+				}
 			}
 		})
 	}

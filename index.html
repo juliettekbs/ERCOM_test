@@ -44,7 +44,7 @@
           <div>
             <md-input-container>
               <label>Datas:</label>
-              <md-select ng-change="generateGraph()" ng-model="selectedParameter">
+              <md-select ng-change="generateGraph(); calculMinMaxMoy()" ng-model="selectedParameter">
                 <md-option ng-value="parameter" ng-repeat="parameter in parameters">
                     {{parameter}}
                 </md-option>
@@ -54,7 +54,7 @@
           <div flex-offset="5">
             <md-input-container>
               <label>After :</label>
-              <md-select ng-change="generateGraph()" ng-model="selectedAfter">
+              <md-select ng-change="generateGraph(); calculMinMaxMoy()" ng-model="selectedAfter">
                 <md-option ng-value="time" ng-repeat="time in times">
                     {{time}}
                 </md-option>
@@ -64,7 +64,7 @@
           <div flex-offset="5">
             <md-input-container>
               <label>Before :</label>
-              <md-select ng-change="generateGraph()" ng-model="selectedBefore">
+              <md-select ng-change="generateGraph(); calculMinMaxMoy()" ng-model="selectedBefore">
                 <md-option ng-value="time" ng-repeat="time in times">
                     {{time}}
                 </md-option>
